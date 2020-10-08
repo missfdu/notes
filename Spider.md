@@ -134,8 +134,6 @@ result = etree.tostring(html)
 print(result.decode('utf-8'))
 ```
 
-<<<<<<< Updated upstream
-
 
 #### BeautifulSoup
 =======

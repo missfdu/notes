@@ -170,3 +170,9 @@ In most shells, you can make use of `Ctrl+R` to perform backwards search through
 If you start a command with a **leading space** it won’t be added to your shell history. This comes in handy when you are typing commands with **passwords** or other bits of **sensitive** information.
 
 #### Directory Navigation
+
+
+
+### Vim
+
+### Data Wrangling

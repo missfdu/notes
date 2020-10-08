@@ -31,15 +31,11 @@ JS是动态类型语言，声明变量无需指定类型。
 
 - `string`:单双引号均可
 
-  - 还有Backticks``，可嵌入${variable}
+  - 还可用Backticks``，可嵌入${variable}
 
 - `boolean`:可直接以表达式赋值
 
-- `array`:方括号括起来，并用逗号分隔
-
 - `symbol` for unique identifiers
-
-- `object`:如`let dog = { name : 'Spot', breed : 'Dalmatian' };`
 
 - `null`
 
@@ -48,6 +44,12 @@ JS是动态类型语言，声明变量无需指定类型。
   > Definitely, `null` is not an object. It is a special value with a separate type of its own.
 
 - `undefined`
+
+以上为7种原始数据类型
+
+`object`:如`let dog = { name : 'Spot', breed : 'Dalmatian' };`
+
+`array`:方括号括起来，并用逗号分隔
 
 #### 算术运算符
 
@@ -171,3 +173,137 @@ Good Comments
 
 数组合成字符串，如`myArray.join(',')`,相较`toString()`方法还能指定分隔符不为逗号  
 字符串拆成数组，如`s.split(',')`
+
+### Object
+
+#### Create Objects
+
+Objects are created with figure brackets `{…}` with an optional list of ***properties***,which are "**key:value**" pairs.
+
+key is a **string**(also called a "**property name**"),value can be anything
+
+An empty object (“empty cabinet”) can be created using one of two syntaxes:
+
+```javascript
+let user = new Object(); // "object constructor" syntax
+let user = {};  // "object literal" syntax
+let user = {
+  name: "John",
+  "likes birds": true,  //multiword property name must be quoted
+  age: 30,  //建议使用trailing comma(尾随逗号)或hanging comma(悬挂逗号)，便于对行进行修改
+}
+```
+
+**Object with const can be changed**
+
+```javascript
+const user = {  //The `const` fixes the value of `user`, but not its contents.
+  name: "John"
+};
+user.name = "Pete"; // Accepted
+user = user2;  //Error!
+```
+
+#### square bracket notation: powerful, also cumbersome
+
+```js
+let user = {};
+// set
+user["likes birds"] = true;
+// get
+alert(user["likes birds"]); // true
+// delete
+delete user["likes birds"];
+
+let key = prompt("What do you want to know about the user?", "name");
+```
+
+In square brackets notation, the variable `key` may be **calculated at run-time or depend on the user input**. And then we use it to access the property. That gives us a great deal of flexibility.The dot notation cannot be used in a similar way
+
+```js
+// access by variable
+alert( user[key] ); // John (if enter "name")
+//The dot notation cannot be used in a similar way:
+let key = "name";
+alert( user.key ) // undefined
+```
+
+**[Computed properties]**(https://javascript.info/object#computed-properties)
+
+We can use square brackets in an object literal when creating an object.
+
+```js
+let fruit = prompt("Which fruit to buy?", "apple");
+
+let bag = {
+  [fruit]: 5, // take property name from the fruit variable
+  [fruit + 'Computers']: 5 // bag.appleComputers = 5
+};
+
+```
+
+#### [Property value shorthand](https://javascript.info/object#property-value-shorthand)
+
+```js
+function makeUser(name, age) {
+  return {
+    name, // same as name: name
+    age,  // same as age: age
+    // ...
+  };
+}
+let user = {
+  name,  // same as name:name
+  age: 30  //可以混用
+};
+```
+
+#### [Property names limitations](https://javascript.info/object#property-names-limitations)
+
+Any strings or symbols!  Except a special property named `__proto__`
+
+#### [Property existence test, “in” operator](https://javascript.info/object#property-existence-test-in-operator)
+
+```js
+"key" in obj  //Syntax. Examples are as follows
+let user = { name: "John", age: 30 };
+alert( "age" in user ); // true, user.age exists
+alert( "blabla" in user ); // false, user.blabla doesn't exist
+```
+
+#### Object Copying, references
+
+**A variable stores not the object itself, but its “address in memory”, in other words “a reference” to it.**
+
+**When an object variable is copied – the reference is copied, the object is not duplicated.**
+
+Comparison by reference
+
+The equality `==` and strict equality `===` operators for **objects** work exactly the **same**.
+
+**Two objects are equal only if they are the same object.**
+
+#### Object cloning, `Object.assign`
+
+No built-in method to duplicate an object, we can create a new object and copy the properties of the existing object on the primitive level using `for..in` loop.
+
+Or use the method [Object.assign](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
+
+```js
+let user = { name: "John" };
+let permissions1 = { canView: true };
+let permissions2 = { canEdit: true };
+
+// copies all properties from permissions1 and permissions2 into user
+Object.assign(user, permissions1, permissions2);
+// now user = { name: "John", canView: true, canEdit: true }
+
+// If the copied property name already exists, it gets overwritten:
+Object.assign(user, { name: "Pete" });
+alert(user.name); // now user = { name: "Pete" }
+
+//use Object.assign for simple cloning
+let clone = Object.assign({}, user);
+```
+
+`Object.assign` is still so-called “shallow copy” (**nested objects** are copied by reference) or a “deep cloning” function, such as [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
