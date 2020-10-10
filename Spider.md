@@ -161,3 +161,85 @@ print(soup.title.string) # 输出 HTML 中 title 节点的文本内容
 >>>>>>> Stashed changes
 ```
 
+## 数据存储
+
+### 纯文本
+
+```python
+with open('explore.txt', 'a', encoding='utf-8') as file:
+    file.write('\n'.join([question, author, answer]))
+```
+
+### JSON
+
+```python
+import json
+# 注意JSON字符串中的数据须用双引号包围
+str = '''
+[{
+    "name": "Bob",
+    "gender": "male",
+    "birthday": "1992-10-18"
+}, {
+    "name": "Selina",
+    "gender": "female",
+    "birthday": "1995-10-18"
+}]
+'''
+print(type(str))
+data = json.loads(str)
+print(data)
+print(type(data))
+```
+使用`loads()`方法将字符串转为JSON对象，结果如下。
+由于最外层是中括号，所以最终的类型是列表类型。
+```
+<class'str'>
+[{'name': 'Bob', 'gender': 'male', 'birthday': '1992-10-18'}, {'name': 'Selina', 'gender': 'female', 'birthday': '1995-10-18'}]
+<class 'list'>
+```
+
+用索引来获取对应的内容,有两种方式
+```python
+data[0]['name']
+data[0].get('name')
+#推荐使用get方法，则当健名不存在时不会报错而返回None
+#get方法还可传入第二个参数，键名不存在时返回该值
+```
+
+JSON转为字符串，使用`dump()`方法
+
+
+```python
+json.dumps(data)
+json.dumps(data, indent=2) #第二个参数设置缩进
+json.dumps(data, indent=2, ensure_ascii=False) #为输出中文需指定参数
+```
+
+### CSV
+
+列表写入CSV
+
+```python
+import csv
+
+with open('data.csv', 'w') as csvfile:
+    writer = csv.writer(csvfile)
+    #传入delimiter参数，可修改列与列之间的分隔符
+    writer = csv.writer(csvfile, delimiter=' ')
+    writer.writerow(['id', 'name', 'age'])
+    writer.writerow(['10001', 'Mike', 20])
+    writer.writerow(['10002', 'Bob', 22])
+    writer.writerow(['10003', 'Jordan', 21])
+    #参数为二维列表则写入多行
+    writer.writerows([['10001', 'Mike', 20], ['10002', 'Bob', 22], ['10003', 'Jordan', 21]])
+    
+    #字典写入CSV
+    #先定义 3 个字段，用 fieldnames 表示，然后将其传给 DictWriter 来初始化一个字典写入对象，接着可以调用 writeheader 方法先写入头信息，然后再调用 writerow 方法传入相应字典即可。
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    writer.writeheader()
+    writer.writerow({'id': '10001', 'name': 'Mike', 'age': 20})
+    writer.writerow({'id': '10002', 'name': 'Bob', 'age': 22})
+    writer.writerow({'id': '10003', 'name': 'Jordan', 'age': 21})
+```
+
