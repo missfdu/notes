@@ -68,6 +68,22 @@ Ctrl + Z   Send the signal SIGTSTP to the current task, which suspends it.
 To return to it later enter fg 'process name' (foreground).
 ```
 
+#### man查看命令
+
+`man -f command`获得更多命令相关信息
+
+```bash
+[dmtsai@study ~]$ man -f man
+man (1)
+ - an interface to the on-line reference manuals
+man (1p )
+ - display system documentation
+man (7)
+ - macros to format man pages
+```
+
+
+
 ### 环境变量
 
 环境变量字符串都是 `name=value` 这样的形式。大多数 name 由大写字母加下画线组成，一般把 name 部分叫做环境变量名，value 部分则是环境变量的值，而且 value 需要以 "/0" 结尾，环境变量定义了该进程的运行环境。
@@ -229,7 +245,7 @@ X86/X86_64 系统上每个 IRQ 相关的中断号列表，多路处理器平台�
 
 `arch-chroot /mnt`切换至arch系统
 
-### 中文输入
+### 中文环境
 
 #### fcitx5
 

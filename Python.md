@@ -1,5 +1,30 @@
 # Python
 
+### 技巧
+
+```python
+import string
+
+def DNA_strand(dna):
+    return dna.translate(string.maketrans('ATCG', 'TAGC'))
+```
+
+```python
+def no_space(x):
+    return "".join(x.split())
+```
+
+```python
+def longest(a1, a2):
+    return "".join(sorted(set(a1 + a2)))
+```
+
+###  错误
+
+#### 正则表达式
+
+表达式中有[花方圆]括号会和匹配规则冲突，需要转义或丢弃括号
+
 ### 语法糖
 
 交互模式下，上一次打印出来的表达式被赋值给变量 `_`
@@ -15,12 +40,6 @@
 ### 数据结构
 
 ##### 列表List
-
-方法：
-
-- list.append(x)把一元素(可为List)添加到列表末尾，
-
-函数
 
 ##### 元组Tuple
 
