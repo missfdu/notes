@@ -275,3 +275,12 @@ X86/X86_64 系统上每个 IRQ 相关的中断号列表，多路处理器平台�
 
    该命令仅限一次开机，永久生效需编辑/etc/fstab
 
+3. 触摸板突然失灵
+
+   先卸载模块`sudo modprobe -r psmouse(或i2c_hid)`
+
+   再装上模块
+
+   刷新系统服务`sudo systemctl daemon-reload`
+
+   再次休眠唤醒
