@@ -37,6 +37,12 @@ def longest(a1, a2):
 
 三重引号可跨行字符串，自动加回车，不想换行则在行尾加`\`
 
+Py3中字符串默认以unicode存储，使用`b'字符串'`以转换为bytes方式存储
+
+`my_str.encode('utf-8')`转换为str为bytes
+
+`my_bytes.decode('utf-8')`转换bytes为str
+
 ### 数据结构
 
 ##### 列表List
@@ -44,5 +50,9 @@ def longest(a1, a2):
 ##### 元组Tuple
 
 ##### 字典
+
+字典转字符串时键值对用单引号，需要replace转换或者使用`json.dumps()`则为双引号
+
+`zip(list1,list2)`将两个列表转换为字典
 
 ##### 集合

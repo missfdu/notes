@@ -284,3 +284,7 @@ X86/X86_64 系统上每个 IRQ 相关的中断号列表，多路处理器平台�
    刷新系统服务`sudo systemctl daemon-reload`
 
    再次休眠唤醒
+
+4. rdesktop卡顿
+
+   加上参数 `-x m -P`
