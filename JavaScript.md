@@ -16,7 +16,7 @@ JS=ECMAScript+DOM+BOM
 
 - `let`:现代版本JS的新关键字，推荐使用
 - `var`:最初JS声明变量的关键字，不推荐
-- `var`容许变量提升和重复声明，易使代码混乱
+  - `var`容许变量提升和重复声明，易使代码混乱
 
 #### 变量类型  
 
@@ -89,7 +89,7 @@ The OR `||` operator can be used in the same way as `??`
 
 - **Comma has a very low precedence**,lower than `=`,so parentheses are important
 
-### 输出窗口
+### Output
 
 [`alert(message)`](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert) shows a message
 
@@ -104,7 +104,7 @@ Limitations of all three methods above:
 1. The exact location of the modal window is determined by the browser. Usually, it’s in the center.
 2. The exact look of the window also depends on the browser. We can’t modify it.
 
-### 类型转换
+### Type Conversion
 
 #### String Conversion
 
@@ -152,7 +152,7 @@ Good Comments
 - **Document function parameters and usage**:allow us to understand the **purpose of the function** and **use it the right way without looking in its code**
 - **Why is the task solved this way?**:What’s written is important. But what’s ***not*** written may be even more important to understand what’s going on.They help to continue development the right way.
 
-### 字符串
+### String
 
 基本语法似Python，实质是对象
 
@@ -162,7 +162,7 @@ Good Comments
 - `toLowerCase()`转小写，`toUpperCase()`转大写
 - `s.replace(s1,s2)`，返回的字符串中子串s2替换为s1
 
-### 数组
+### Array
 
 基本语法似Python
 
