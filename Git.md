@@ -1,6 +1,6 @@
 [Learn Git Branching](https://learngitbranching.js.org/) : A interactive way to learn git vividly
 
-a commit is a basic element, like 
+a commit is a basic element
 
 a branch points at a commit
 

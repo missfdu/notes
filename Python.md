@@ -56,3 +56,15 @@ Py3中字符串默认以unicode存储，使用`b'字符串'`以转换为bytes方
 `zip(list1,list2)`将两个列表转换为字典
 
 ##### 集合
+
+### Data
+
+```python
+import pyarrow as pa
+import pyarrow.parquet as pq
+from pyarrow import csv
+
+df = csv.read_csv('data.csv').to_pandas()
+df
+```
+
